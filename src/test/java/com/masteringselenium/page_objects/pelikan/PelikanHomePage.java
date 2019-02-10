@@ -4,6 +4,7 @@ import com.masteringselenium.page_objects.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -52,9 +53,14 @@ public class PelikanHomePage extends BasePage {
     }
 
     /**
-     * Gets the first sales ticket in the list.
+     * Gets the first sales ticket in the list. Focus on that div by @{@link Actions#moveToElement(WebElement)}.
      */
     public WebElement getFirstSalesTicketWebElement() {
+        // move to element
+        Actions actions = new Actions(driver);
+        actions.moveToElement(firstSalesTicketElement);
+        actions.perform();
+
         return firstSalesTicketElement;
     }
 

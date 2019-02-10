@@ -35,17 +35,11 @@ public class PelikanHomepageTest extends DriverBase {
 
 
     /**
-     * Assure that there is sales tickets div. Put focus on that element if necessary.
+     * Assure that there is a sales tickets div. Focus on that div by @{@link Actions#moveToElement(WebElement)}.
      */
-    @Test(dependsOnMethods = "czechHomepageLanded_successful")
+    @Test(dependsOnMethods = "czechHomepageLanded_successful", groups = "homepage.salesTicket")
     public void salesTicketsListIsPresent() {
         WebElement salesTicketElement = homePage.getFirstSalesTicketWebElement();
-
-        // move to element
-        Actions actions = new Actions(driver);
-        actions.moveToElement(salesTicketElement);
-        actions.perform();
-
         assertThat(salesTicketElement.isDisplayed());
     }
 
