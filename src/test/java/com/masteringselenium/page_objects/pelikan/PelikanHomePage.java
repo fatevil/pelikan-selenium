@@ -27,7 +27,6 @@ public class PelikanHomePage extends BasePage {
     @FindBy(how = How.XPATH, using = "//div[contains(@class, \"lang-holder\")]//div[contains(@class, \"list-item-content\")]//span[contains(@class, \"currency\")]")
     private WebElement currencyElement;
 
-
     public static PelikanHomePage open(WebDriver driver) {
         driver.get(PELIKAN_HOMEPAGE_URL);
 
