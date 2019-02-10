@@ -5,6 +5,8 @@ import com.masteringselenium.listeners.ScreenshotListener;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -33,15 +35,16 @@ public class DriverBase {
     }
 
     public static RemoteWebDriver getDriver() throws MalformedURLException {
-        return new DriverFactory().getDriver();
-        // https://www.guru99.com/gecko-marionette-driver-selenium.html
-        // download from https://github.com/mozilla/geckodriver/releases
-        /*System.setProperty("webdriver.gecko.driver", "C:\\utils\\SeleniumDrivers\\FirefoxDriver_0.22\\geckodriver.exe");
+        //return new DriverFactory().getDriver();
+         //https://www.guru99.com/gecko-marionette-driver-selenium.html
+         //download from https://github.com/mozilla/geckodriver/releases
+        System.setProperty("webdriver.gecko.driver", "/home/marek/skola/zks/zks-semestralka/geckodriver");
+        System.setProperty("webdriver.chrome.driver", "/home/marek/skola/zks/zks-semestralka/src/test/resources/selenium_standalone_binaries/linux/googlechrome/64bit/chromedriver");
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        FirefoxOptions options = new FirefoxOptions();
+        ChromeOptions options = new ChromeOptions();
         options.merge(desiredCapabilities);
         options.setHeadless(false);
-        return new FirefoxDriver(options);*/
+        return new ChromeDriver(options);
     }
 
     @AfterClass(alwaysRun = true)
