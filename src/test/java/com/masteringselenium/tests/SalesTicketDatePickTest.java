@@ -39,7 +39,7 @@ public class SalesTicketDatePickTest extends DriverBase {
 
         assertThat(originalPriceText).isNotEqualTo(secondPriceText);
 
-        WebElement correntToDateElement = salesTicketsPage.getCorrentToDateElement();
+        WebElement correntToDateElement = salesTicketsPage.getCorrectToDateElement();
         correntToDateElement.click();
 
         WebElement finalPriceElement = salesTicketsPage.getPriceElement();
@@ -83,7 +83,7 @@ public class SalesTicketDatePickTest extends DriverBase {
      */
     @Test
     public void choosingReturnDateDeselectsStartDate_successful() {
-        WebElement toPriceElement = salesTicketsPage.getCorrentToDateElement();
+        WebElement toPriceElement = salesTicketsPage.getCorrectToDateElement();
         toPriceElement.click();
 
         assertThat(toPriceElement.isSelected());
