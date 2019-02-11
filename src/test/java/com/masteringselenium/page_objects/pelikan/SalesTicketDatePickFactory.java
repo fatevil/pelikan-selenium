@@ -101,8 +101,8 @@ public class SalesTicketDatePickFactory extends BasePage {
     /**
      * Different structure for multiple browsers and the versions: Firefox, Chrome.
      */
-    @FindAll({@FindBy(how = How.XPATH, using = "//div[@id=\"from\"]//a[contains(@class, \"day\") and contains(@class, \"level-1\")][last()]"),
-            @FindBy(how = How.XPATH, using = "//div[@id=\"from\"]//a[contains(@class, \"day\") and contains(@class, \"has-price\")][last()]")})
+    @FindAll({@FindBy(how = How.XPATH, using = "//div[@id=\"to\"]//a[contains(@class, \"day\") and contains(@class, \"level-1\")][last()]"),
+            @FindBy(how = How.XPATH, using = "//div[@id=\"to\"]//a[contains(@class, \"day\") and contains(@class, \"has-price\")][last()]")})
     private WebElement correctToDateElement;
 
     /**
