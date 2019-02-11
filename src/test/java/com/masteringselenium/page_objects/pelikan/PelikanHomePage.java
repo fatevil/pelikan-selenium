@@ -55,11 +55,7 @@ public class PelikanHomePage extends BasePage {
      * Gets the first sales ticket in the list. Focus on that div by @{@link Actions#moveToElement(WebElement)}.
      */
     public WebElement getFirstSalesTicketWebElement() {
-        // move to element
-        Actions actions = new Actions(driver);
-        actions.moveToElement(firstSalesTicketElement);
-        actions.perform();
-
+        PelikanWebDriverUtils.moveToElement(driver, firstSalesTicketElement);
         return firstSalesTicketElement;
     }
 
