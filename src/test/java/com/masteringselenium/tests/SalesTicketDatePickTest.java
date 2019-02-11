@@ -2,7 +2,7 @@ package com.masteringselenium.tests;
 
 import com.masteringselenium.DriverBase;
 import com.masteringselenium.page_objects.pelikan.PelikanHomePage;
-import com.masteringselenium.page_objects.pelikan.PelikanTicketDateSelectionPage;
+import com.masteringselenium.page_objects.pelikan.SalesTicketDatePickFactory;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,9 +10,9 @@ import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.not;
 
-public class PelikanBuySalesTicketsTest extends DriverBase {
+public class SalesTicketDatePickTest extends DriverBase {
 
-    private PelikanTicketDateSelectionPage salesTicketsPage;
+    private SalesTicketDatePickFactory salesTicketsPage;
 
     @BeforeMethod
     public void getToSalesTicketPage() {
@@ -20,7 +20,7 @@ public class PelikanBuySalesTicketsTest extends DriverBase {
         WebElement salesTicketElement = homePage.getFirstSalesTicketWebElement();
         salesTicketElement.click();
 
-        this.salesTicketsPage = PelikanTicketDateSelectionPage.start(driver);
+        this.salesTicketsPage = SalesTicketDatePickFactory.start(driver);
     }
 
     /**

@@ -7,15 +7,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
-
-public class PelikanTicketDateSelectionPage extends BasePage {
+public class SalesTicketDatePickFactory extends BasePage {
 
     /**
      * Different structure for multiple browsers and the versions: Firefox, Chrome.
@@ -60,14 +57,14 @@ public class PelikanTicketDateSelectionPage extends BasePage {
      * @param driver
      * @return new instance of this class
      */
-    public static PelikanTicketDateSelectionPage start(WebDriver driver) {
-        PelikanTicketDateSelectionPage homePage = new PelikanTicketDateSelectionPage(driver);
+    public static SalesTicketDatePickFactory start(WebDriver driver) {
+        SalesTicketDatePickFactory homePage = new SalesTicketDatePickFactory(driver);
         homePage.waitFor();
         homePage.initFields();
         return homePage;
     }
 
-    private PelikanTicketDateSelectionPage(WebDriver driver) {
+    private SalesTicketDatePickFactory(WebDriver driver) {
         super(driver);
     }
 
