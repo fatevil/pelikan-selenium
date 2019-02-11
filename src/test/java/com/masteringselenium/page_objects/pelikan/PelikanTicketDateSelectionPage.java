@@ -17,13 +17,33 @@ import java.util.List;
 
 public class PelikanTicketDateSelectionPage extends BasePage {
 
+    /**
+     * Different structure for multiple browsers and the versions: Firefox, Chrome.
+     */
+    @FindAll({@FindBy(how = How.XPATH, using = "//div[@id=\"from\"]//a[contains(@class, \"day\") and contains(@class, \"level-1\")][last()]"),
+            @FindBy(how = How.XPATH, using = "//div[@id=\"from\"]//a[contains(@class, \"day\") and contains(@class, \"has-price\")][last()]")})
+    private WebElement correntStartDateLastElement;
 
     /**
      * Different structure for multiple browsers and the versions: Firefox, Chrome.
      */
-    @FindAll({@FindBy(how = How.XPATH, using = "//div[@id=\"from\"]//a[contains(@class, \"day\") and contains(@class, \"level-1\")]"),
-            @FindBy(how = How.XPATH, using = "//div[@id=\"from\"]//a[contains(@class, \"day\") and contains(@class, \"has-price\")]")})
-    private WebElement correntStartDate;
+    @FindAll({@FindBy(how = How.XPATH, using = "//div[@id=\"from\"]//a[contains(@class, \"day\") and contains(@class, \"level-1\")][1]"),
+            @FindBy(how = How.XPATH, using = "//div[@id=\"from\"]//a[contains(@class, \"day\") and contains(@class, \"has-price\")][1]")})
+    private WebElement correntStartDateFirstElement;
+
+    /**
+     * Different structure for multiple browsers and the versions: Firefox, Chrome.
+     */
+    @FindAll({@FindBy(how = How.XPATH, using = "//div[@id=\"from\"]//a[contains(@class, \"day\") and contains(@class, \"level-1\")][last()]"),
+            @FindBy(how = How.XPATH, using = "//div[@id=\"from\"]//a[contains(@class, \"day\") and contains(@class, \"has-price\")][last()]")})
+    private WebElement correntToDateElement;
+
+    /**
+     * Different structure for multiple browsers and the versions: Firefox, Chrome.
+     */
+    @FindAll({@FindBy(how = How.XPATH, using = "//div[@id=\"to\"]//a[contains(@class, \"day\") and contains(@class, \"level-1\") and contains(@class, \"disabled\")][1]"),
+            @FindBy(how = How.XPATH, using = "//div[@id=\"to\"]//a[contains(@class, \"day\") and contains(@class, \"has-price\") and contains(@class, \"disabled\")][1]")})
+    private WebElement disabledToDate;
 
     @FindBy(how = How.XPATH, using = "//div[@id = \"from\"]//a[contains(@class, \"day\") and not(contains(@class, \"level-1\"))]")
     private WebElement inactiveStartDate;
@@ -64,8 +84,34 @@ public class PelikanTicketDateSelectionPage extends BasePage {
         });
     }
 
-    public WebElement getCorrentStartDate() {
-        return correntStartDate;
+    public WebElement getContinueButton() {
+        return continueButton;
+    }
+
+    public WebElement getCorrentStartDateFirstElement() {
+        return correntStartDateFirstElement;
+    }
+
+    public WebElement getCorrentStartDateLastElement() {
+        return correntStartDateLastElement;
+    }
+
+    public WebElement getCorrentToDateElement() {
+        // move to element
+        Actions actions = new Actions(driver);
+        actions.moveToElement(correntToDateElement);
+        actions.perform();
+
+        return correntToDateElement;
+    }
+
+    public WebElement getDisabledToDate() {
+        // move to element
+        Actions actions = new Actions(driver);
+        actions.moveToElement(correntToDateElement);
+        actions.perform();
+        ;
+        return disabledToDate;
     }
 
     public WebElement getInactiveStartDate() {

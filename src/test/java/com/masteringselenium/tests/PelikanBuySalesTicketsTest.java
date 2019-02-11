@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.not;
 
 public class PelikanBuySalesTicketsTest extends DriverBase {
 
@@ -23,38 +24,73 @@ public class PelikanBuySalesTicketsTest extends DriverBase {
     }
 
     /**
-     * Assert that after selecting correct flight date, the price changes and the continue button is still disabled.
+     * Assert that after selecting correct start and return flight date, the price changes both times.
      */
     @Test
     public void choosingDateChangesPrice_successful() {
         WebElement originalPriceElement = salesTicketsPage.getPriceElement();
         String originalPriceText = originalPriceElement.getText();
 
-        WebElement correctDateElement = salesTicketsPage.getCorrentStartDate();
-        correctDateElement.click();
+        WebElement correctStartDateElement = salesTicketsPage.getCorrentStartDateFirstElement();
+        correctStartDateElement.click();
 
         WebElement newPriceElement = salesTicketsPage.getPriceElement();
-        String newPriceText = newPriceElement.getText();
+        String secondPriceText = newPriceElement.getText();
 
-        assertThat(originalPriceText).isNotEqualTo(newPriceElement);
-        assertThat(originalPriceText).isNotEqualTo(newPriceElement);
+        assertThat(originalPriceText).isNotEqualTo(secondPriceText);
+
+        WebElement correntToDateElement = salesTicketsPage.getCorrentToDateElement();
+        correntToDateElement.click();
+
+        WebElement finalPriceElement = salesTicketsPage.getPriceElement();
+        String finalPriceText = finalPriceElement.getText();
+
+        assertThat(secondPriceText).isNotEqualTo(finalPriceText);
     }
 
 
     /**
-     * Assert that after selecting incorrect flight date, the price does not change and continue button is still disabled.
+     * Assert that after selecting incorrect flight date, the continue button is still disabled.
      */
     @Test
-    public void choosingDateChangesPrice_unsuccessful() {
-        WebElement originalPriceElement = salesTicketsPage.getPriceElement();
-        String originalPriceText = originalPriceElement.getText();
-
+    public void choosingIncorrectDateChangesPrice_unsuccessful() {
         WebElement correctDateElement = salesTicketsPage.getInactiveStartDate();
         correctDateElement.click();
 
-        WebElement newPriceElement = salesTicketsPage.getPriceElement();
-        String newPriceText = newPriceElement.getText();
+        WebElement priceElement = salesTicketsPage.getPriceElement();
+        assertThat(not(priceElement.isEnabled()));
+    }
 
-        assertThat(originalPriceText).isEqualTo(newPriceText);
+    /**
+     * Assert that after selecting incorrect flight date, the continue button is still disabled.
+     */
+    @Test
+    public void choosingInvalidDateChangesPrice_unsuccessful() {
+        WebElement correctDateLastElement = salesTicketsPage.getCorrentStartDateLastElement();
+        correctDateLastElement.click();
+
+        WebElement disabledDate = salesTicketsPage.getDisabledToDate();
+        disabledDate.click();
+
+        WebElement priceElement = salesTicketsPage.getPriceElement();
+        assertThat(not(priceElement.isEnabled()));
+    }
+
+    /**
+     * Assure that first choosing the return date and then start date placed after the return date doesn't work.
+     * <p>
+     * Example: 5.1.2018 - 1.1.2018
+     */
+    @Test
+    public void choosingReturnDateDeselectsStartDate_successful() {
+        WebElement toPriceElement = salesTicketsPage.getCorrentToDateElement();
+        toPriceElement.click();
+
+        assertThat(toPriceElement.isSelected());
+
+        WebElement startDateElement = salesTicketsPage.getCorrentStartDateFirstElement();
+        startDateElement.click();
+
+        assertThat(not(toPriceElement.isSelected()));
     }
 }
