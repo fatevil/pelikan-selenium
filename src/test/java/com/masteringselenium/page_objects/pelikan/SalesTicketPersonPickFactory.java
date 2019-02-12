@@ -2,6 +2,7 @@ package com.masteringselenium.page_objects.pelikan;
 
 import com.masteringselenium.page_objects.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -83,6 +84,58 @@ public class SalesTicketPersonPickFactory extends BasePage {
         return xpath;
     }
 
+    /**
+     * Some browser dont display the youth person option. Return the next option instead.
+     *
+     * @return toddler right input
+     */
+    public WebElement getToddlerIncrementElement() {
+        try {
+            toddlerIncrementElement.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return youthIncrementElement;
+        }
+        return toddlerIncrementElement;
+    }
+
+    /**
+     * Some browser dont display the youth person option. Return the next option instead.
+     *
+     * @return toddler left input
+     */
+    public WebElement getToddlerDecrementElement() {
+        PelikanWebDriverUtils.moveToElement(driver, adultDecrementElement);
+        try {
+            toddlerDecrementElement.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return youthDecrementElement;
+        }
+        return toddlerDecrementElement;
+    }
+
+    /**
+     * Some browser dont display the youth person option. Return the next option instead.
+     *
+     * @return toddler info label
+     */
+    public WebElement getToddlerValueElement() {
+        try {
+            toddlerIncrementElement.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return youthValueElement;
+        }
+        return toddlerValueElement;
+    }
+
+    public boolean isContinueButtonDisabled() {
+        String disabledAttribute = getContinueButton().getAttribute("disabled");
+        if (disabledAttribute == null) {
+            return false;
+        } else {
+            return disabledAttribute.equals("true") || disabledAttribute.equals("disabled");
+        }
+    }
+
     public WebElement getAdultDecrementElement() {
         PelikanWebDriverUtils.moveToElement(driver, adultDecrementElement);
         return adultDecrementElement;
@@ -118,24 +171,16 @@ public class SalesTicketPersonPickFactory extends BasePage {
         return childValueElement;
     }
 
-    public WebElement getToddlerIncrementElement() {
-        return toddlerIncrementElement;
-    }
-
-    public WebElement getToddlerDecrementElement() {
-        PelikanWebDriverUtils.moveToElement(driver, adultDecrementElement);
-        return toddlerDecrementElement;
-    }
-
-    public WebElement getToddlerValueElement() {
-        return toddlerValueElement;
-    }
-
     public WebElement getAdultIncrementElement() {
         return adultIncrementElement;
     }
 
+    public WebElement getNumberOfPersonsValidation() {
+        return numberOfPersonsValidation;
+    }
+
     public WebElement getContinueButton() {
+        PelikanWebDriverUtils.moveToElement(driver, adultDecrementElement);
         return continueButton;
     }
 
@@ -184,6 +229,9 @@ public class SalesTicketPersonPickFactory extends BasePage {
 
     @FindBy(how = How.XPATH, using = "//div[contains(@class, \"dropdown-tickets\")]//li[4]//span[contains(@class, \"info\")]")
     private WebElement toddlerValueElement;
+
+    @FindBy(how = How.XPATH, using = "//div[contains(@class, \"dropdown-tickets\")]//label[contains(@class, \"form-error\")]")
+    private WebElement numberOfPersonsValidation;
 
     @FindBy(how = How.XPATH, using = "//div[contains(@class, \"item\")]/a[contains(@class, \"btn\") and contains(@class, \"continue\")]")
     private WebElement continueButton;
