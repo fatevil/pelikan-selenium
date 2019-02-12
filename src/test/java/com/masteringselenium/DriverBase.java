@@ -42,6 +42,7 @@ public class DriverBase {
         System.setProperty("webdriver.chrome.driver", "/home/marek/skola/zks/zks-semestralka/src/test/resources/selenium_standalone_binaries/linux/googlechrome/64bit/chromedriver");
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
         options.merge(desiredCapabilities);
         options.setHeadless(false);
         return new ChromeDriver(options);
