@@ -1,9 +1,9 @@
 package com.masteringselenium.tests;
 
 import com.masteringselenium.DriverBase;
-import com.masteringselenium.page_objects.pelikan.PelikanHomePage;
-import com.masteringselenium.page_objects.pelikan.SalesTicketDatePickFactory;
-import com.masteringselenium.page_objects.pelikan.SalesTicketPersonPickFactory;
+import com.masteringselenium.page_objects.pelikan.PelikanHomePageObject;
+import com.masteringselenium.page_objects.pelikan.SalesTicketDatePickPage;
+import com.masteringselenium.page_objects.pelikan.SalesTicketPersonPickPage;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
@@ -13,21 +13,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class SalesTicketPersonPickTest extends DriverBase {
 
-    private SalesTicketPersonPickFactory personPickPage;
+    private SalesTicketPersonPickPage personPickPage;
 
     @BeforeMethod
     public void getToSalesTicketPage() {
-        PelikanHomePage homePage = PelikanHomePage.open(driver);
+        PelikanHomePageObject homePage = PelikanHomePageObject.open(driver);
         WebElement salesTicketElement = homePage.getFirstSalesTicketWebElement();
         salesTicketElement.click();
 
-        SalesTicketDatePickFactory salesTicketsPage = SalesTicketDatePickFactory.start(driver);
+        SalesTicketDatePickPage salesTicketsPage = SalesTicketDatePickPage.start(driver);
         WebElement correctStartDateElement = salesTicketsPage.getCorrentStartDateFirstElement();
         correctStartDateElement.click();
         WebElement correntToDateElement = salesTicketsPage.getCorrectToDateElement();
         correntToDateElement.click();
 
-        this.personPickPage = SalesTicketPersonPickFactory.start(driver);
+        this.personPickPage = SalesTicketPersonPickPage.start(driver);
         personPickPage.getOpenPersonsSelectionElement().click();
     }
 

@@ -1,7 +1,7 @@
 package com.masteringselenium.tests;
 
 import com.masteringselenium.DriverBase;
-import com.masteringselenium.page_objects.pelikan.PelikanHomePage;
+import com.masteringselenium.page_objects.pelikan.PelikanHomePageObject;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
@@ -11,14 +11,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PelikanHomepageTest extends DriverBase {
 
-    private PelikanHomePage homePage;
+    private PelikanHomePageObject homePage;
 
     /**
      * Open homepage and assure that the selected language and currency is czech.
      */
     @Test
     public void czechHomepageLanded_successful() {
-        this.homePage = PelikanHomePage.open(driver);
+        this.homePage = PelikanHomePageObject.open(driver);
 
         assertThat(homePage.getCurrency()).isEqualTo("(CZK)");
         assertThat(homePage.getCurrentLang()).isEqualTo("CS");

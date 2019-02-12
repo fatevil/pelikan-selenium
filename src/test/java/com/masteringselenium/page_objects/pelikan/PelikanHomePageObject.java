@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class PelikanHomePage extends BasePage {
+public class PelikanHomePageObject extends BasePage {
 
     public static final String PELIKAN_HOMEPAGE_URL = "https://www.pelikan.cz/cs";
 
@@ -27,16 +27,16 @@ public class PelikanHomePage extends BasePage {
     @FindBy(how = How.XPATH, using = "//div[contains(@class, \"lang-holder\")]//div[contains(@class, \"list-item-content\")]//span[contains(@class, \"currency\")]")
     private WebElement currencyElement;
 
-    public static PelikanHomePage open(WebDriver driver) {
+    public static PelikanHomePageObject open(WebDriver driver) {
         driver.get(PELIKAN_HOMEPAGE_URL);
 
-        PelikanHomePage homePage = new PelikanHomePage(driver);
+        PelikanHomePageObject homePage = new PelikanHomePageObject(driver);
         homePage.waitFor();
         homePage.initFields();
         return homePage;
     }
 
-    private PelikanHomePage(WebDriver driver) {
+    private PelikanHomePageObject(WebDriver driver) {
         super(driver);
     }
 

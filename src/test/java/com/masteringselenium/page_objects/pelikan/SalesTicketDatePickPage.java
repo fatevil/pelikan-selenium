@@ -4,7 +4,6 @@ import com.masteringselenium.page_objects.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -12,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SalesTicketDatePickFactory extends BasePage {
+public class SalesTicketDatePickPage extends BasePage {
 
     /**
      * Recognizes the driver and prepares new instance of this class for handling the page.
@@ -20,14 +19,14 @@ public class SalesTicketDatePickFactory extends BasePage {
      * @param driver
      * @return new instance of this class
      */
-    public static SalesTicketDatePickFactory start(WebDriver driver) {
-        SalesTicketDatePickFactory homePage = new SalesTicketDatePickFactory(driver);
+    public static SalesTicketDatePickPage start(WebDriver driver) {
+        SalesTicketDatePickPage homePage = new SalesTicketDatePickPage(driver);
         homePage.waitFor();
         homePage.initFields();
         return homePage;
     }
 
-    private SalesTicketDatePickFactory(WebDriver driver) {
+    private SalesTicketDatePickPage(WebDriver driver) {
         super(driver);
     }
 
