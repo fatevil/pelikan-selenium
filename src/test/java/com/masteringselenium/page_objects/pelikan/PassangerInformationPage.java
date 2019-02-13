@@ -32,8 +32,8 @@ public class PassangerInformationPage extends BasePage {
     @Override
     public void waitFor() {
 
-        // wait 20 seconds at most to display the header
-        Wait<WebDriver> wait = new WebDriverWait(driver, 20);
+        // wait 30 seconds at most to display the header
+        Wait<WebDriver> wait = new WebDriverWait(driver, 30);
         wait.until((ExpectedCondition<Boolean>) d -> {
             WebElement toDivElement = d.findElement(By.xpath("//div[@class = \"detail-header-wrapp-new-reservation\"]"));
             return toDivElement.isDisplayed();
@@ -41,47 +41,63 @@ public class PassangerInformationPage extends BasePage {
     }
 
     public WebElement getPassengerFirstnameTextArea() {
+        PelikanWebDriverUtils.moveToElement(driver, passengerFirstnameTextArea);
         return passengerFirstnameTextArea;
     }
 
     public WebElement getPassengerSurnameTextarea() {
+        PelikanWebDriverUtils.moveToElement(driver, passengerSurnameTextarea);
         return passengerSurnameTextarea;
     }
 
     public WebElement getPassengerBirthDayInput() {
+        PelikanWebDriverUtils.moveToElement(driver, passengerBirthDayInput);
         return passengerBirthDayInput;
     }
 
     public WebElement getPassengerBirthMonthInput() {
+        PelikanWebDriverUtils.moveToElement(driver, passengerBirthMonthInput);
         return passengerBirthMonthInput;
     }
 
     public WebElement getPassengerBirthYearInput() {
+        PelikanWebDriverUtils.moveToElement(driver, passengerBirthYearInput);
         return passengerBirthYearInput;
     }
 
     public WebElement getPassengerGenderInput() {
+        PelikanWebDriverUtils.moveToElement(driver, passengerGenderInput);
         return passengerGenderInput;
     }
 
     public WebElement getEmailInput() {
+        PelikanWebDriverUtils.moveToElement(driver, emailInput);
         return emailInput;
     }
 
     public WebElement getPhoneInput() {
+        PelikanWebDriverUtils.moveToElement(driver, phoneInput);
         return phoneInput;
     }
 
     public WebElement getCompanyStreetInput() {
+        PelikanWebDriverUtils.moveToElement(driver, companyStreetInput);
         return companyStreetInput;
     }
 
     public WebElement getCompanyCityInput() {
+        PelikanWebDriverUtils.moveToElement(driver, companyCityInput);
         return companyCityInput;
     }
 
     public WebElement getCompanyZipInput() {
+        PelikanWebDriverUtils.moveToElement(driver, companyZipInput);
         return companyZipInput;
+    }
+
+    public WebElement getContinueButton() {
+        PelikanWebDriverUtils.moveToElement(driver, continueButton);
+        return continueButton;
     }
 
     @FindBy(how = How.XPATH, using = "//input[@name = \"formDetailPassengersName\"]")
@@ -99,7 +115,7 @@ public class PassangerInformationPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//input[@id = \"yearbirthDate0\"]")
     private WebElement passengerBirthYearInput;
 
-    @FindBy(how = How.XPATH, using = "//input[@id = \"radio-sex-1\"]")
+    @FindBy(how = How.XPATH, using = "//input[@id = \"radio-sex-1\"]/parent::div")
     private WebElement passengerGenderInput;
 
     @FindBy(how = How.XPATH, using = "//input[@name = \"formDetailContactEmail\"]")
@@ -116,4 +132,8 @@ public class PassangerInformationPage extends BasePage {
 
     @FindBy(how = How.XPATH, using = "//input[@name = \"formDetailContactZip\"]")
     private WebElement companyZipInput;
+
+    @FindBy(how = How.XPATH, using = "//div[contains(@class, \"summary-button-new-reservation\")]/a[contains(@class, \"btn-green\")]")
+    private WebElement continueButton;
+
 }

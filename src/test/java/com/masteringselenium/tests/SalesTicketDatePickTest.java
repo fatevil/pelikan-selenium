@@ -1,7 +1,7 @@
 package com.masteringselenium.tests;
 
 import com.masteringselenium.DriverBase;
-import com.masteringselenium.page_objects.pelikan.PelikanHomePageObject;
+import com.masteringselenium.page_objects.pelikan.PelikanHomePage;
 import com.masteringselenium.page_objects.pelikan.SalesTicketDatePickPage;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
@@ -16,7 +16,7 @@ public class SalesTicketDatePickTest extends DriverBase {
 
     @BeforeMethod
     public void getToSalesTicketPage() {
-        PelikanHomePageObject homePage = PelikanHomePageObject.open(driver);
+        PelikanHomePage homePage = PelikanHomePage.open(driver);
         WebElement salesTicketElement = homePage.getFirstSalesTicketWebElement();
         salesTicketElement.click();
 

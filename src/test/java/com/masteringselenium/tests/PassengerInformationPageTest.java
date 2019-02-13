@@ -2,7 +2,7 @@ package com.masteringselenium.tests;
 
 import com.masteringselenium.DriverBase;
 import com.masteringselenium.page_objects.pelikan.PassangerInformationPage;
-import com.masteringselenium.page_objects.pelikan.PelikanHomePageObject;
+import com.masteringselenium.page_objects.pelikan.PelikanHomePage;
 import com.masteringselenium.page_objects.pelikan.SalesTicketDatePickPage;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
@@ -14,7 +14,7 @@ public class PassengerInformationPageTest extends DriverBase {
 
     @BeforeMethod
     public void goToPassengerInfoPage() {
-        PelikanHomePageObject homePage = PelikanHomePageObject.open(driver);
+        PelikanHomePage homePage = PelikanHomePage.open(driver);
         WebElement salesTicketElement = homePage.getFirstSalesTicketWebElement();
         salesTicketElement.click();
 
@@ -34,9 +34,27 @@ public class PassengerInformationPageTest extends DriverBase {
      *
      */
     @Test
-    public void addingAdultDoublesThePrice() {
+    public void successfulWalkThrough() {
+        // first part of the form
+        passengerInformationPage.getPassengerGenderInput().click();
+        passengerInformationPage.getPassengerFirstnameTextArea().sendKeys("FirstName");
+        passengerInformationPage.getPassengerSurnameTextarea().sendKeys("Surname");
+        passengerInformationPage.getPassengerBirthDayInput().sendKeys("1");
+        passengerInformationPage.getPassengerBirthMonthInput().sendKeys("1");
+        passengerInformationPage.getPassengerBirthYearInput().sendKeys("1985");
 
-        // :)
+        // second part of the form
+        passengerInformationPage.getEmailInput().sendKeys("test@test.cz");
+        passengerInformationPage.getPhoneInput().sendKeys("789789789");
+        passengerInformationPage.getCompanyCityInput().sendKeys("Praha");
+        passengerInformationPage.getCompanyStreetInput().sendKeys("Random Street 12");
+        passengerInformationPage.getCompanyZipInput().sendKeys("11111");
+
+        // continue
+        passengerInformationPage.getContinueButton().click();
+
+        // skip the insurance page
+        passengerInformationPage.getContinueButton().click();
 
     }
 

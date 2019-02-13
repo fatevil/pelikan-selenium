@@ -33,8 +33,8 @@ public class SalesTicketDatePickPage extends BasePage {
     @Override
     public void waitFor() {
 
-        // wait 10 seconds at most for the sales ticket date selection table to appear
-        Wait<WebDriver> wait = new WebDriverWait(driver, 20);
+        // wait 30 seconds at most for the sales ticket date selection table to appear
+        Wait<WebDriver> wait = new WebDriverWait(driver, 30);
         wait.until((ExpectedCondition<Boolean>) d -> {
             WebElement toDivElement = d.findElement(By.xpath("//div[@id=\"to\" and contains(@class, \"box\")]"));
             WebElement fromDivElement = d.findElement(By.xpath("//div[@id=\"from\" and contains(@class, \"box\") and contains(@class, \"active\")]"));
@@ -44,6 +44,7 @@ public class SalesTicketDatePickPage extends BasePage {
     }
 
     public WebElement getContinueButton() {
+        PelikanWebDriverUtils.moveToElement(driver, continueButton);
         return continueButton;
     }
 
